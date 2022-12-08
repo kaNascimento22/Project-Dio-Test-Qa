@@ -1,0 +1,19 @@
+-BDD Teste e Cenários
+
+
+def "Selecionar Produtos na pagina principal"(){
+
+    //Dado um contexto (adicionar no carrinho os produtos escolhidos)
+    given:"produto adicionado com sucesso"
+    def novoProduto = new Carrinho(produtoKey: 02)
+
+    //Quando adiconar mostrar valores no carrinho do produto(mostrar valor total do produtos)
+    when:"for adicionado"
+    service.adicionar(novoProduto)
+
+    //Então se espera que aconteça algo (verifica se os produtos escolhidos no carrinho estão retornado valor e total de todos os produtos)
+    then:"deve informar os total do valor no carrinho"
+    1* service.servicoCarrinho.retornarTotalDosProdutos()
+
+    2* service.servicoValor.retornarFormaPagamento()		
+  }
